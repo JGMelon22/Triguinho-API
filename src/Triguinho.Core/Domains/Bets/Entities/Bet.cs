@@ -27,5 +27,5 @@ public class Bet
     public DateTime BetDate { get; set; }
 
     public int RoundId { get; set; }
-    public Round Round { get; set; }
+    public Round? Round { get; set; }
 }
