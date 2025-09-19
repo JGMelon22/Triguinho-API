@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/Triguinho.API/Triguinho.API.csproj" />
+    <Project Path="src/Triguinho.Application/Triguinho.Application.csproj" />
+    <Project Path="src/Triguinho.Core/Triguinho.Core.csproj" />
+    <Project Path="src/Triguinho.Infrastructure/Triguinho.Infrastructure.csproj" />
+  </Folder>
+</Solution>
