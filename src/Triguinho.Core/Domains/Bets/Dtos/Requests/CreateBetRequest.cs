@@ -4,5 +4,7 @@ public record CreateBetRequest
 (
     int RoundId,
     decimal DepositValue,
-    decimal Multiplier
+    decimal Multiplier,
+    int ChosenValue,
+    string BetType
 );

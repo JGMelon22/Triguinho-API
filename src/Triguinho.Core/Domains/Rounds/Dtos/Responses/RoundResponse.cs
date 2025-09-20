@@ -8,4 +8,8 @@ public record RoundResponse
     public DateTime? EndDate { get; init; }
     public int GameId { get; init; }
     public string GameName { get; init; } = string.Empty;
+
+    public int? DrawnValue { get; init; }
+    public string? ResultDescription { get; init; }
+    public DateTime? GenerationMoment { get; init; }
 }

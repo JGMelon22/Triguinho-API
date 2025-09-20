@@ -12,4 +12,7 @@ public record BetResponse
     public DateTime BetDate { get; init; }
     public int RoundId { get; init; }
     public int? RoundSequenceNumber { get; init; }
+
+    public int ChosenValue { get; init; }
+    public string BetType { get; init; } = string.Empty;
 }
