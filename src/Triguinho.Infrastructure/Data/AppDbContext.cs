@@ -20,6 +20,7 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.ApplyConfiguration(new BetConfiguration());
         modelBuilder.ApplyConfiguration(new GameConfiguration());
         modelBuilder.ApplyConfiguration(new RoundConfiguration());
     }

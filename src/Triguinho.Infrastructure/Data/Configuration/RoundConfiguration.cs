@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Triguinho.Core.Domains.Rounds.Entities;
 
 namespace Triguinho.Infrastructure.Data.Configuration;
