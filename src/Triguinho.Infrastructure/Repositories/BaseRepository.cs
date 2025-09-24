@@ -1,19 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Triguinho.Infrastructure.Data;
 using Triguinho.Infrastructure.Interfaces.Repositories;
 
 namespace Triguinho.Infrastructure.Repositories;
 
 public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 {
-    protected readonly DbContext dbContext;
+    protected readonly AppDbContext context;
     protected readonly DbSet<T> dbSet;
     protected readonly ILogger<BaseRepository<T>> logger;
 
-    protected BaseRepository(DbContext dbContext, ILogger<BaseRepository<T>> logger)
+    protected BaseRepository(AppDbContext context, ILogger<BaseRepository<T>> logger)
     {
-        this.dbContext = dbContext;
-        this.dbSet = dbContext.Set<T>();
+        this.context = context;
+        this.dbSet = context.Set<T>();
         this.logger = logger;
     }
 
@@ -22,7 +23,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         try
         {
             await dbSet.AddAsync(entity);
-            await dbContext.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return entity;
         }
         catch (Exception ex)
@@ -42,7 +43,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
                 return false;
 
             dbSet.Remove(entity);
-            await dbContext.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return true;
         }
         catch (Exception ex)
@@ -86,7 +87,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         try
         {
             dbSet.Update(entity);
-            await dbContext.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return entity;
         }
         catch (Exception ex)

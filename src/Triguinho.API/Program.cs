@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Triguinho.Infrastructure.Data;
+using Triguinho.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
