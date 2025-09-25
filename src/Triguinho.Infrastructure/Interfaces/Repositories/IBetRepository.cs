@@ -8,5 +8,5 @@ public interface IBetRepository : IBaseRepository<Bet>
     Task<IEnumerable<Bet>> FindPendingBetsAsync();
     Task<IEnumerable<Bet>> FindWinningBetsAsync();
     Task<IEnumerable<Bet>> FindAllWithRoundAsync();
-    Task<Bet?> ReadWithRoundAsync();
+    Task<Bet?> ReadWithRoundAsync(int id);
 }

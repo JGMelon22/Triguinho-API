@@ -7,6 +7,7 @@ public static class IocExtensions
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IBetRepository, BetRepository>();
         services.AddScoped<IGameRepository, GameRepository>();
         services.AddScoped<IRoundRepository, RoundRepository>();
 
