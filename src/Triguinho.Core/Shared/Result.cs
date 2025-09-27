@@ -6,16 +6,16 @@ public sealed class Result<T>
     public bool IsSuccess { get; }
     public bool IsError => !IsSuccess;
 
-    public Result(T? value)
+    private Result(T? value)
     {
-        Value = Value ?? throw new ArgumentException(nameof(value), "Value cannot be null.");
+        Value = value ?? throw new ArgumentException(nameof(value), "Value cannot be null.");
         IsSuccess = true;
         Error = null;
     }
 
-    public Result(Error error)
+    private Result(Error error)
     {
-        Value = Value ?? throw new ArgumentException(nameof(error), "Error cannot be null.");
+        Error = error ?? throw new ArgumentException(nameof(error), "Error cannot be null.");
         IsSuccess = false;
         Error = error;
     }

@@ -1,4 +1,3 @@
-using System.Collections;
 using NetDevPack.SimpleMediator;
 using Triguinho.Application.Games.Handlers;
 using Triguinho.Application.Games.Queries;
