@@ -2,6 +2,7 @@ using NetDevPack.SimpleMediator;
 using Triguinho.Application.Games.Handlers;
 using Triguinho.Application.Games.Queries;
 using Triguinho.Core.Domains.Games.Dtos.Responses;
+using Triguinho.Core.Shared;
 using Triguinho.Infrastructure.Interfaces.Repositories;
 using Triguinho.Infrastructure.Repositories;
 
@@ -13,9 +14,9 @@ public static class IocExtensions
     public static IServiceCollection AddHandlers(this IServiceCollection services)
     {
         services.AddScoped<IMediator, Mediator>();
-        services.AddScoped<IRequestHandler<GetActiveGamesQuery, IEnumerable<GameResponse>>, GetActiveGamesHandler>();
-        services.AddScoped<IRequestHandler<GetAllGamesQuery, IEnumerable<GameResponse>>, GetAllGamesQueryHandler>();
-        services.AddScoped<IRequestHandler<GetGameByIdQuery, GameResponse?>, GetGameByIdQueryHandler>();
+        services.AddScoped<IRequestHandler<GetActiveGamesQuery, Result<IEnumerable<GameResponse>>>, GetActiveGamesHandler>();
+        services.AddScoped<IRequestHandler<GetAllGamesQuery, Result<IEnumerable<GameResponse>>>, GetAllGamesQueryHandler>();
+        services.AddScoped<IRequestHandler<GetGameByIdQuery, Result<GameResponse?>>, GetGameByIdQueryHandler>();
 
         return services;
     }

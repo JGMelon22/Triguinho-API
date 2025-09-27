@@ -8,7 +8,7 @@ using Triguinho.Infrastructure.Interfaces.Repositories;
 
 namespace Triguinho.Application.Games.Handlers;
 
-public class GetAllGamesQueryHandler : IRequestHandler<GetAllGamesQuery, IEnumerable<GameResponse>>
+public class GetAllGamesQueryHandler : IRequestHandler<GetAllGamesQuery, Result<IEnumerable<GameResponse>>>
 {
     private readonly IGameRepository _gameRepository;
     private readonly ILogger<GetAllGamesQueryHandler> _logger;
@@ -19,17 +19,19 @@ public class GetAllGamesQueryHandler : IRequestHandler<GetAllGamesQuery, IEnumer
         _logger = logger;
     }
 
-    public async Task<IEnumerable<GameResponse>> Handle(GetAllGamesQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IEnumerable<GameResponse>>> Handle(GetAllGamesQuery request, CancellationToken cancellationToken)
     {
         try
         {
             var games = await _gameRepository.GetAllAsync();
-            return games.ToResponse();
+            var response = games.ToResponse();
+
+            return Result<IEnumerable<GameResponse>>.Success(response);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching active games in query handler.");
-            return [];
+            return Result<IEnumerable<GameResponse>>.Failure(Error.RepositoryError);
         }
     }
 }
