@@ -8,7 +8,7 @@ namespace Triguinho.Core.Domains.Games.Mappings;
 public static class MappingExtensions
 {
     public static Game ToDomain(this CreateGameRequest request)
-        => new Game(request.Name, request.Rules, request.IsActive, new List<Round>());
+        => new Game(request.Name, request.Rules, true, new List<Round>());
 
     public static GameResponse ToResponse(this Game game)
     => new GameResponse

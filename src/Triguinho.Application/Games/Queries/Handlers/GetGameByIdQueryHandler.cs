@@ -1,12 +1,11 @@
 using Microsoft.Extensions.Logging;
 using NetDevPack.SimpleMediator;
-using Triguinho.Application.Games.Queries;
 using Triguinho.Core.Domains.Games.Dtos.Responses;
 using Triguinho.Core.Domains.Games.Mappings;
 using Triguinho.Core.Shared;
 using Triguinho.Infrastructure.Interfaces.Repositories;
 
-namespace Triguinho.Application.Games.Handlers;
+namespace Triguinho.Application.Games.Queries.Handlers;
 
 public class GetGameByIdQueryHandler : IRequestHandler<GetGameByIdQuery, Result<GameResponse?>>
 {

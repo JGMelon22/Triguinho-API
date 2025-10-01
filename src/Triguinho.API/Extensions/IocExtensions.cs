@@ -1,6 +1,8 @@
 using NetDevPack.SimpleMediator;
-using Triguinho.Application.Games.Handlers;
+using Triguinho.Application.Games.Commands;
+using Triguinho.Application.Games.Commands.Handlers;
 using Triguinho.Application.Games.Queries;
+using Triguinho.Application.Games.Queries.Handlers;
 using Triguinho.Core.Domains.Games.Dtos.Responses;
 using Triguinho.Core.Shared;
 using Triguinho.Infrastructure.Interfaces.Repositories;
@@ -17,6 +19,9 @@ public static class IocExtensions
         services.AddScoped<IRequestHandler<GetActiveGamesQuery, Result<IEnumerable<GameResponse>>>, GetActiveGamesHandler>();
         services.AddScoped<IRequestHandler<GetAllGamesQuery, Result<IEnumerable<GameResponse>>>, GetAllGamesQueryHandler>();
         services.AddScoped<IRequestHandler<GetGameByIdQuery, Result<GameResponse?>>, GetGameByIdQueryHandler>();
+        services.AddScoped<IRequestHandler<CreateGameCommand, Result<GameResponse>>, CreateGameCommandHandler>();
+        services.AddScoped<IRequestHandler<UpdateGameCommand, Result<GameResponse>>, UpdateGameCommandHandler>();
+        services.AddScoped<IRequestHandler<DeleteGameCommand, Result<bool>>, DeleteGameCommandHandler>();
 
         return services;
     }

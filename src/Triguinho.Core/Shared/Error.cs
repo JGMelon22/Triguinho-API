@@ -7,6 +7,7 @@ public sealed record Error(int Code, string Description)
 
     // Game-Related Errors
     public static Error GameNotFound => new Error(404, "Game Id not found!");
+    public static Error GameCreationFailed => new Error(500, "Failed to create the game.");
 
     // Round-Related Errors
     public static Error RoundNotFound => new Error(404, "Round Id not found!");
