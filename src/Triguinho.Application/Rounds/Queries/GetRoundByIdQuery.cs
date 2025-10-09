@@ -4,4 +4,4 @@ using Triguinho.Core.Shared;
 
 namespace Triguinho.Application.Rounds.Queries;
 
-public record GetRoundByIdQueryHandler : IRequest<Result<RoundResponse?>>;
+public record GetRoundByIdQuery(int Id) : IRequest<Result<RoundResponse?>>;

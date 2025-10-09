@@ -3,7 +3,10 @@ using Triguinho.Application.Games.Commands;
 using Triguinho.Application.Games.Commands.Handlers;
 using Triguinho.Application.Games.Queries;
 using Triguinho.Application.Games.Queries.Handlers;
+using Triguinho.Application.Rounds.Queries;
+using Triguinho.Application.Rounds.Queries.Handlers;
 using Triguinho.Core.Domains.Games.Dtos.Responses;
+using Triguinho.Core.Domains.Rounds.Dtos.Responses;
 using Triguinho.Core.Shared;
 using Triguinho.Infrastructure.Interfaces.Repositories;
 using Triguinho.Infrastructure.Repositories;
@@ -22,6 +25,11 @@ public static class IocExtensions
         services.AddScoped<IRequestHandler<CreateGameCommand, Result<GameResponse>>, CreateGameCommandHandler>();
         services.AddScoped<IRequestHandler<UpdateGameCommand, Result<GameResponse>>, UpdateGameCommandHandler>();
         services.AddScoped<IRequestHandler<DeleteGameCommand, Result<bool>>, DeleteGameCommandHandler>();
+
+        services.AddScoped<IRequestHandler<GetAllRoundsQuery, Result<IEnumerable<RoundResponse>>>, GetAllRoundsQueryHandler>();
+        services.AddScoped<IRequestHandler<GetOpenRoundsQuery, Result<IEnumerable<RoundResponse>>>, GetOpenRoundsQueryHandler>();
+        services.AddScoped<IRequestHandler<GetRoundByIdQuery, Result<RoundResponse?>>, GetRoundByIdQueryHandler>();
+        services.AddScoped<IRequestHandler<GetRoundsByGameQuery, Result<IEnumerable<RoundResponse>>>, GetRoundsByGameQueryHandler>();
 
         return services;
     }

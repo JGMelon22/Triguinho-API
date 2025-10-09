@@ -1,0 +1,44 @@
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+using NetDevPack.SimpleMediator;
+using Triguinho.Core.Domains.Rounds.Dtos.Responses;
+using Triguinho.Core.Domains.Rounds.Mappings;
+using Triguinho.Core.Shared;
+using Triguinho.Infrastructure.Interfaces.Repositories;
+
+namespace Triguinho.Application.Rounds.Queries.Handlers;
+
+public class GetRoundsByGameQueryHandler : IRequestHandler<GetRoundsByGameQuery, Result<IEnumerable<RoundResponse>>>
+{
+    private readonly IRoundRepository _roundRepository;
+    private readonly ILogger<GetRoundsByGameQueryHandler> _logger;
+
+    public GetRoundsByGameQueryHandler(IRoundRepository roundRepository, ILogger<GetRoundsByGameQueryHandler> logger)
+    {
+        _roundRepository = roundRepository;
+        _logger = logger;
+    }
+
+    public async Task<Result<IEnumerable<RoundResponse>>> Handle(GetRoundsByGameQuery request, CancellationToken cancellationToken)
+    {
+
+        try
+        {
+            var rounds = await _roundRepository.FindByGameAsync(request.GameId);
+            if (!rounds.Any())
+            {
+                _logger.LogWarning("No rounds from Game ID: {GameId} were found.", request.GameId);
+                return Result<IEnumerable<RoundResponse>>.Failure(Error.RoundNotFound);
+            }
+
+            var response = rounds.ToResponse();
+
+            return Result<IEnumerable<RoundResponse>>.Success(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching rounds from Game ID: {GameId} in the handler.", request.GameId);
+            return Result<IEnumerable<RoundResponse>>.Failure(Error.RepositoryError);
+        }
+    }
+}

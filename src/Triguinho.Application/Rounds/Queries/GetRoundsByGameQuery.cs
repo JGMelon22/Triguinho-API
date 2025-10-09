@@ -4,4 +4,4 @@ using Triguinho.Core.Shared;
 
 namespace Triguinho.Application.Rounds.Queries;
 
-public record GetRoundsByGameQuery : IRequest<Result<IEnumerable<RoundResponse>>>;
+public record GetRoundsByGameQuery(int GameId) : IRequest<Result<IEnumerable<RoundResponse>>>;
