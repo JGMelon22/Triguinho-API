@@ -8,9 +8,11 @@ public sealed record Error(int Code, string Description)
     // Game-Related Errors
     public static Error GameNotFound => new Error(404, "Game Id not found!");
     public static Error GameCreationFailed => new Error(500, "Failed to create the game.");
+    public static Error GameInactive => new Error(410, "Game is Inactive.");
 
     // Round-Related Errors
     public static Error RoundNotFound => new Error(404, "Round Id not found!");
+    public static Error RoundCreationFailed => new Error(500, "Failed to create a round.");
 
     // Repository Layer Error
     public static Error RepositoryError => new Error(500, "An unexpected error occurred while fetching the data.");
