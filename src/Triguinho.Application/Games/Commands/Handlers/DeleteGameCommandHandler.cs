@@ -30,7 +30,7 @@ public class DeleteGameCommandHandler : IRequestHandler<DeleteGameCommand, Resul
             return Result<bool>.Success(result);
 
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to delete game with Id: {Id}", request.Id);
             return Result<bool>.Failure(Error.RepositoryError);

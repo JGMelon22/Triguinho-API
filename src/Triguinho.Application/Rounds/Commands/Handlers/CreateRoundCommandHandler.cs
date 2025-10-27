@@ -53,7 +53,8 @@ namespace Triguinho.Application.Rounds.Commands.Handlers
                     "Failed to create round. GameId: {GameId}, SequenceNumber: {SequenceNumber}",
                     request.Request.GameId,
                     request.SequenceNumber);
-                throw;
+
+                return Result<RoundResponse>.Failure(Error.RepositoryError);
             }
         }
     }
