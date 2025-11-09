@@ -12,7 +12,9 @@ public sealed record Error(int Code, string Description)
 
     // Round-Related Errors
     public static Error RoundNotFound => new Error(404, "Round Id not found!");
+    public static Error RoundNotOpen => new Error(409, "Round is not open!");
     public static Error RoundCreationFailed => new Error(500, "Failed to create a round.");
+    public static Error RoundFinalizationFailed => new Error(500, "Failed to finalized the round.");
 
     // Repository Layer Error
     public static Error RepositoryError => new Error(500, "An unexpected error occurred while fetching the data.");

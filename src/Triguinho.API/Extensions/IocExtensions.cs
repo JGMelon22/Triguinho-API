@@ -34,6 +34,7 @@ public static class IocExtensions
         services.AddScoped<IRequestHandler<GetRoundsByGameQuery, Result<IEnumerable<RoundResponse>>>, GetRoundsByGameQueryHandler>();
         services.AddScoped<IRequestHandler<CreateRoundCommand, Result<RoundResponse>>, CreateRoundCommandHandler>();
         services.AddScoped<IRequestHandler<UpdateRoundCommand, Result<RoundResponse>>, UpdateRoundCommandHandler>();
+        services.AddScoped<IRequestHandler<FinalizeRoundCommand, Result<RoundResponse>>, FinalizeRoundCommandHandler>();
 
         return services;
     }
